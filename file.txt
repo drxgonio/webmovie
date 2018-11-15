@@ -1,0 +1,8 @@
+Tri:
+-them, sua, xoa danh muc
+-them, sua, xoa phim
+-them,sua, xoa  xuat chieu
+-xoa,sua taif khoan
+-load tai khoan
+-quan ly rap phim ,phon chieu
+-lam lai bang ajax
