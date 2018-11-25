@@ -1,3 +1,4 @@
+
 <%@ page import="com.movie.Connect.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.movie.Controller.*"%>
@@ -9,10 +10,12 @@
 <!doctype html>
 <html class="no-js h-100" lang="en">
 
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Quản lý danh muc phim</title>
+<title>Shards Dashboard Lite - Free Bootstrap Admin Template –
+	DesignRevision</title>
 <meta name="description"
 	content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
 <meta name="viewport"
@@ -26,20 +29,19 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0"
-	href="${pageContext.request.contextPath}/Views/styles/shards-dashboards.1.1.0.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/Views/styles/extras.1.1.0.min.css">
+	href="styles/shards-dashboards.1.1.0.min.css">
+<link rel="stylesheet" href="styles/extras.1.1.0.min.css">
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.css">
 </head>
-
 <body class="h-100 accent-secondary active" data-color="danger">
 	<%
 		ZDanhMucPhim danhmucphim = new ZDanhMucPhim();
 	%>
+		<%
+		ZTrangThai tt = new ZTrangThai();
+	%>
 	<div class="container-fluid">
-		<div class="row" id="row_main">
+		<div class="row">
 			<aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
 				<div class="main-navbar">
 					<nav
@@ -49,9 +51,8 @@
 							<div class="d-table m-auto">
 								<img id="main-logo" class="d-inline-block align-top mr-1"
 									style="max-width: 25px;"
-									src="${pageContext.request.contextPath}/Views/images/shards-dashboards-logo.svg"
-									alt="Shards Dashboard"> <span
-									class="d-none d-md-inline ml-1">Trang quản lý</span>
+									src="images/shards-dashboards-logo.svg" alt="Shards Dashboard">
+								<span class="d-none d-md-inline ml-1">Trang quản lý</span>
 							</div>
 						</a> <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none"> <i
 							class="material-icons">&#xE5C4;</i>
@@ -72,11 +73,11 @@
 				</form>
 				<div class="nav-wrapper">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link "
+						<li class="nav-item"><a class="nav-link active"
 							href="TrangQuanLyPhim.jsp"> <i class="material-icons">edit</i>
 								<span>Quản lý phim</span>
 						</a></li>
-						<li class="nav-item "><a class="nav-link active "
+						<li class="nav-item"><a class="nav-link "
 							href="TrangDanhMucPhim.jsp"> <i class="material-icons">vertical_split</i>
 								<span>Quản lý danh mục phim</span>
 						</a></li>
@@ -103,10 +104,8 @@
 				</div>
 			</aside>
 			<main
-				class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3"
-				id="main_pn">
+				class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
 			<div class="main-navbar sticky-top bg-white">
-				<!-- Main Navbar -->
 				<nav
 					class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
 					<form action="#"
@@ -195,122 +194,189 @@
 						</a>
 					</nav>
 				</nav>
-			</div>
-			<div class="main-content-container container-fluid px-4">
-				<!-- Page Header -->
-				<div class="page-header row no-gutters py-4">
-					<div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-						<span class="text-uppercase page-subtitle">Dashboard</span>
-						<h3 class="page-title">Blog Overview</h3>
-					</div>
-				</div>
 
-				<button type="button" class="btn btn-info mb-3" data-toggle="modal"
-					data-target="#myModal">Thêm Danh Mục Phim +</button>
 				<div class="row">
-					<!-- The Modal -->
-					<div class="modal" id="myModal">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<!-- Modal Header -->
-								<div class="modal-header">
-									<h4 class="modal-title">Thêm Danh Mục Phim</h4>
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-								</div>
-								<!-- Modal body -->
-								<div class="modal-body">
-									<form class="add-new-post"
-										action="/WebMovie/DanhMucPhimServlet" method="post">
-										<input type="hidden" name="command" value="insert"> <input
-											class="form-control form-control-lg mb-3" type="text"
-											placeholder="Tên danh mục" name="tenDanhMuc" required>
-										<input class="form-control form-control-lg mb-3" type="text"
-											placeholder="Mô tả" name="moTa" required>
-										<div class="col">
 
-											<input type="submit" class="btn btn-info mb-3 " value="Thêm">
+					<div class='col-lg-9 col-md-12'>
+						<div class="card card-small mb-3">
+							<div class="card-body">
+								<form class="add-new-post" action="/WebMovie/PhimServlet"
+									method="post">
+									<input type="hidden" name="command" value="update">
+									<input
+											type="hidden" name="id" value="${param.id }">
+									 <input
+										class="form-control form-control-lg mb-3" type="text"
+										placeholder="Tiêu đề phim" name="tieuDe" value="${param.tieuDe }">
+									<div
+										class="row justify-content-md-center  justify-content-lg-center align-items-center">
+										<div class="col-lg-4 col-md-4">
+											<input class="form-control form-control-lg mb-3" type="text"
+												placeholder="Đạo diễn" name="daoDien"value="${param.daoDien }">
 										</div>
+										<div class="col-lg-4 col-md-4">
+											<input class="form-control form-control-lg mb-3"
+												type="number" placeholder="Độ tuổi" name="doTuoi"value="${param.doTuoi }">
+										</div>
+										<div class="col-lg-4 col-md-3">
+											<div class="dropdown mb-1">
+												<button class="btn btn-primary dropdown-toggle"
+													type="button" id="dropdownMenuButton"
+													data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false">Quốc gia</button>
+												<div class="dropdown-menu"
+													aria-labelledby="dropdownMenuButton">
+													<select multiple class="form-control" id="sel2"
+														name="quocGia" >
 
-									</form>
-								</div>
+														<option class="dropdown-item">Việt Nam</option>
+														<option class="dropdown-item">Lào</option>
+														<option class="dropdown-item">Campuchia</option>
+														<option class="dropdown-item">Mỹ</option>
+														<option class="dropdown-item">Ấn Độ</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<input class="form-control form-control-lg mb-3" type="text"
+										placeholder="Diễn viên" name="dienVien">
+										
+									<div
+										class="row justify-content-md-center  justify-content-lg-center align-items-center">
+										<div class="col-lg-7 col-md-7">
+											<input class="form-control form-control-lg mb-3" type="url"
+												placeholder="Link trailer phim" name="urlTrailer" value="${param.urlTrailer }">
+										</div>
+										<div class="col-lg-5 col-md-5">
+											<input class="form-control form-control-lg mb-3" type="text"
+												placeholder="Link ảnh" name="linkAnh" value="${param.linkAnh }">
+										</div>
+									</div>
+									<input class="form-control form-control-lg mb-3" type="text"
+										placeholder="Mô tả" name="moTa"value="${param.moTa }">
+									<div class="col-lg-5 col-md-6 pl-0">
+										<input class="form-control form-control-lg mb-3" type="text"
+											placeholder="Gia ve" name="giaVe"value="${param.giaVe }"> 
+											<input
+											class="form-control form-control-lg mb-3" type="text"
+											placeholder="Độ dài" name="doDai"value="${param.doDai }">
+										<div class="card-body border-bottom">
+											<div
+												class="card-header  border-bottom text-center text-justify">
+												<span>Danh mục phim</span>
+											</div>
+											<select multiple class="form-control" id="sel_Danhmuc"
+												name="danhMuc" value="${param.doDai }">
+												<%
+													int count = 0;
+													for (DanhMucPhim c : danhmucphim.getDanhMucPhim()) {
+														count++;
+												%>
+												<option><%=c.getTenDanhMuc()%></option>
+												<%
+													}
+												%>
+											</select>
+											
+										</div>
+										<div class="card-body border-bottom">
+											<div
+												class="card-header  border-bottom text-center text-justify">
+												<span>Trạng thái</span>
+											</div>
+											<select multiple class="form-control" id="sel_TrangThai"
+													name="trangThai">
+													<%
+													int count1 = 0;
+													for (TrangThai b : tt.getTT()) {
+														count1++;
+														
+												%>
+													<option><%=b.getTenTrangThai()%></option>
+													<%
+													}
+												%>
+												</select>
+											
+										</div>
+										
+										<input type="submit" class="btn btn-info mb-3 " value="Update">
+									</div>
+									<div id="editor-container" class="add-new-post__editor mb-1">
 
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
-
-					<div class="col">
-						<div class="card card-small mb-4">
-							<div class="card-header border-bottom">
-								<h6 class="m-0">Danh Sách Danh mục</h6>
+					<div class="col-lg-3 col-md-12">
+						<div class="card card-small mb-3"></div>
+						<div class="card-footer">
+							<li class="list-group-item d-flex px-3">
+								<div class="input-group">
+									<input id="CategoryName" type="text" class="form-control"
+										placeholder="New category" aria-label="Add new category"
+										aria-describedby="basic-addon2">
+									<div class="input-group-append">
+										<button id="addCategory" class="btn btn-white px-2"
+											type="submit">
+											<i class="material-icons">add</i>
+										</button>
+									</div>
+								</div>
+							</li>
+						</div>
+					</div>
+					<div class="card card-small mb-3">
+						<div class="card-header  border-bottom text-center text-justify">
+							<span>Tùy Chọn</span>
+						</div>
+						<div class="card-body">
+							<div class="form-check border-bottom text-left ml-2">
+								<input type="checkbox" class="form-check-input" id="isComments">
+								<label class="form-check-label" for="exampleCheck1">Cho
+									Phép Bình Luận</label>
 							</div>
-							<div class="card-body p-0 pb-3 text-center table-responsive">
-
-								<table class="table mb-0">
-
-									<thead class="bg-light">
-
-										<tr>
-											<th scope="col" class="border-0">STT</th>
-											<th scope="col" class="border-0">ID</th>
-											<th scope="col" class="border-0">Tên Danh Mục</th>
-											<th scope="col" class="border-0">Mô tả</th>
-											<th scope="col" class="border-0">Tùy chọn</th>
-
-
-										</tr>
-
-										<%
-											int count = 0;
-											for (DanhMucPhim c : danhmucphim.getDanhMucPhim()) {
-												count++;
-										%>
-										<tr>
-											<th scope="col" class="border-0"><%=count%></th>
-											<th scope="col" class="border-0"><%=c.getId()%></th>
-											<th scope="col" class="border-0"><%=c.getTenDanhMuc()%></th>
-											<th scope="col" class="border-0"><%=c.getMoTa()%></th>
-											<td><a
-												href="/WebMovie/Views/UpdateDanhMucPhim.jsp?command=update&id=<%=c.getId()%>&tenDanhMuc=<%=c.getTenDanhMuc()%>&moTa=<%=c.getMoTa()%>"
-												class="btn btn-warning"><i class="fa fa-edit"></i></a> <a
-												href="/WebMovie/DanhMucPhimServlet?command=delete&id=<%=c.getId()%>"
-												class="btn btn-danger"> <i class="fa fa-trash"></i></a></td>
-										</tr>
-										<%
-											}
-										%>
-									</thead>
-
-									<tbody>
-
-									</tbody>
-								</table>
+						</div>
+						<div class="card-body">
+							<div class="form-check border-bottom text-left ml-2">
+								<input type="checkbox" class="form-check-input" id="isComments">
+								<label class="form-check-label" for="exampleCheck1">Khong
+									duoc Phép Bình Luận</label>
 							</div>
 						</div>
 
-						<nav aria-label="Page navigation example 	">
-							<ul class="pagination float-right">
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<c:forEach var="i" begin="1" end="${numberPage}">
-									<div class="page-item" id="pageNumber${i}">
-										<a class="page-link">${i}</a>
-									</div>
-								</c:forEach>
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-							</ul>
-						</nav>
+						<div class="row    align-items-center mb-4">
+							<div class="dropdown mb-1 col-6 text-center">
+								<button class="btn btn-primary dropdown-toggle col-9"
+									type="button" id="dropdownMenuButton" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Chế Độ</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<select multiple class="form-control" id="sel2" name="country">
+										<option class="dropdown-item">Hot</option>
+										<option class="dropdown-item">Xem Nhiều Nhất</option>
+									</select>
+								</div>
+							</div>
+							<div class="dropdown mb-1 col-6 text-center">
+								<button class="btn btn-primary dropdown-toggle col-9"
+									type="button" id="dropdownMenuButton" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Quyền Xem</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<select multiple class="form-control" id="sel2" name="country">
+										<option class="dropdown-item">Công Khai</option>
+										<option class="dropdown-item">Riêng tư</option>
+									</select>
+								</div>
+							</div>
+
+
+						</div>
 
 					</div>
 				</div>
-			</div>
 			</main>
-
-
 
 		</div>
 	</div>
@@ -330,93 +396,7 @@
 	<script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Views/scripts/extras.1.1.0.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Views/scripts/shards-dashboards.1.1.0.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Views/scripts/jquery-3.3.1.min"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Views/scripts/app/app-blog-new-post.1.1.0.js"></script>
-	<script>
-		$(document)
-				.ready(
-
-						function() {
-
-							var tempBtnClickPageNumber = $(".page-item");
-							$(".page-item")
-									.click(
-											function() {
-												$("tbody").empty();
-												var bid = $(this).attr('id');
-												//lay text của this
-												var b = $("#" + bid + "")
-														.text().trim();
-												//active button
-												if (tempBtnClickPageNumber != $(this)) {
-													tempBtnClickPageNumber
-															.removeClass("active")
-													$(this).addClass("active");
-												} else {
-													$(this).addClass("active");
-												}
-
-												$
-														.ajax({
-															url : 'table',
-															data : {
-																page : b
-															},
-															dataType : 'html',
-															success : function(
-																	data) {
-
-																var obj = $
-																		.parseJSON(data);
-																console
-																		.log(obj);
-																$
-																		.each(
-																				obj,
-																				function(
-																						index,
-																						el) {
-																					$(
-																							"<tr> <td>"
-																									+ el.tieuDe
-																									+ "</td><td>"
-																									+ el.daoDien
-																									+ "</td><td>"
-																									+ el.dienVien
-																									+ "</td><td>"
-																									+ el.id_TrangThai
-																									+ "</td><td>"
-																									+ el.moTa
-																									+ "</td><td>"
-																									+ el.doDai
-																									+ "</td><td>"
-																									+ el.quocGia
-																									+ "</td><td>"
-																									+ "<a href='#'><i class='fa fa-edit' style='font-size:24px'></i></a>"
-																									+ "<a href='#'><i class='fa fa-trash' style='font-size:24px'></i></a>"
-																									+ "</td>"
-																									+ "</tr>")
-																							.appendTo(
-																									$("tbody"));
-																				});
-
-															}
-														});
-												tempBtnClickPageNumber = $(this);
-											});
-
-						});
-	</script>
-
+	<script src="scripts/extras.1.1.0.min.js"></script>
+	<script src="scripts/shards-dashboards.1.1.0.min.js"></script>
+	<script src="scripts/app/app-blog-overview.1.1.0.js"></script>
 </body>
-
-</html>
-

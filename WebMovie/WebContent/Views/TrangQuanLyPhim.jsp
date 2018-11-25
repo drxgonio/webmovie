@@ -1,7 +1,7 @@
-<%@ page import="com.movie.Connect.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="com.movie.Controller.*" %>
-<%@ page import="com.movie.beans.*" %>
+<%@ page import="com.movie.Connect.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.movie.Controller.*"%>
+<%@ page import="com.movie.beans.*"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -35,8 +35,13 @@
 </head>
 
 <body class="h-100 accent-secondary active" data-color="danger">
-<%ZPhim phim=new ZPhim(); 
-										%>
+	<%ZPhim phim=new ZPhim(); 	%>
+	<%
+		ZDanhMucPhim danhmucphim = new ZDanhMucPhim();
+	%>
+	<%
+		ZTrangThai tt = new ZTrangThai();
+	%>
 	<div class="container-fluid">
 		<div class="row" id="row_main">
 			<aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
@@ -69,53 +74,38 @@
 							placeholder="Search for something..." aria-label="Search">
 					</div>
 				</form>
-				  <div class="nav-wrapper">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="TrangQuanLyPhim.jsp">
-                             <i class="material-icons">edit</i>
-                             <span>Quản lý phim</span>
-                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="TrangDanhMucPhim.jsp">
-                  <i class="material-icons">vertical_split</i>
-                  <span>Quản lý danh mục phim</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="add-new-post.html">
-                  <i class="material-icons">note_add</i>
-                  <span>Quản lý lịch chiếu</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="form-components.html">
-                  <i class="material-icons">view_module</i>
-                  <span>Quản lý Khách hàng</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="tables.html">
-                  <i class="material-icons">table_chart</i>
-                  <span>Quản lý thông tin cá nhân</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="user-profile-lite.html">
-                  <i class="material-icons">person</i>
-                  <span>User Profile</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="errors.html">
-                  <i class="material-icons">error</i>
-                  <span>Errors</span>
-                </a>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
+				<div class="nav-wrapper">
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link active"
+							href="TrangQuanLyPhim.jsp"> <i class="material-icons">edit</i>
+								<span>Quản lý phim</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="TrangDanhMucPhim.jsp"> <i class="material-icons">vertical_split</i>
+								<span>Quản lý danh mục phim</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="add-new-post.html"> <i class="material-icons">note_add</i>
+								<span>Quản lý lịch chiếu</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="form-components.html"> <i class="material-icons">view_module</i>
+								<span>Quản lý Khách hàng</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link " href="tables.html">
+								<i class="material-icons">table_chart</i> <span>Quản lý
+									thông tin cá nhân</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="user-profile-lite.html"> <i class="material-icons">person</i>
+								<span>User Profile</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link " href="errors.html">
+								<i class="material-icons">error</i> <span>Errors</span>
+						</a></li>
+					</ul>
+				</div>
+			</aside>
 			<main
 				class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3"
 				id="main_pn">
@@ -218,28 +208,149 @@
 						<h3 class="page-title">Blog Overview</h3>
 					</div>
 				</div>
-				 <div class="col">
-                    <a href="#" class="btn btn-info mb-3 " role="button">Thêm Phim + </a>
-                  </div>
+				<div class="col">
+					<button type="button" class="btn btn-info mb-3" data-toggle="modal"
+						data-target="#myModal">Thêm Phim+</button>
+					<!-- The Modal -->
+					<div class="modal" id="myModal">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">Thêm Rạp Chiếu</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+								<!-- Modal body -->
+								<div class="modal-body">
+									<form class="add-new-post" action="/WebMovie/PhimServlet"
+										method="post">
+										<input type="hidden" name="command" value="insert"> <input
+											class="form-control form-control-lg mb-3" type="text"
+											placeholder="Tiêu đề phim" name="tieuDe"required>
+										<div
+											class="row justify-content-md-center  justify-content-lg-center align-items-center">
+											<div class="col-lg-4 col-md-4">
+												<input class="form-control form-control-lg mb-3" type="text"
+													placeholder="Đạo diễn" name="daoDien"required>
+											</div>
+											<div class="col-lg-4 col-md-4">
+												<input class="form-control form-control-lg mb-3"
+													type="number" placeholder="Độ tuổi" name="doTuoi"required>
+											</div>
+											<div class="col-lg-4 col-md-3">
+												<div class="dropdown mb-1">
+													<button class="btn btn-primary dropdown-toggle"
+														type="button" id="dropdownMenuButton"
+														data-toggle="dropdown" aria-haspopup="true"
+														aria-expanded="false">Quốc gia</button>
+													<div class="dropdown-menu"
+														aria-labelledby="dropdownMenuButton">
+														<select multiple class="form-control" id="sel2"
+															name="quocGia">
+
+															<option class="dropdown-item">Việt Nam</option>
+															<option class="dropdown-item">Lào</option>
+															<option class="dropdown-item">Campuchia</option>
+															<option class="dropdown-item">Mỹ</option>
+															<option class="dropdown-item">Ấn Độ</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<input class="form-control form-control-lg mb-3" type="text"
+											placeholder="Diễn viên" name="dienVien"required>
+											<input class="form-control form-control-lg mb-3" type="text"
+											placeholder="Mô tả" name="moTa"required>
+										<div
+											class="row justify-content-md-center  justify-content-lg-center align-items-center">
+											<div class="col-lg-7 col-md-7">
+												<input class="form-control form-control-lg mb-3" type="url"
+													placeholder="Link trailer phim" name="urlTrailer"required>
+											</div>
+											<div class="col-lg-5 col-md-5">
+												<input class="form-control form-control-lg mb-3" type="text"
+													placeholder="Link ảnh" name="linkAnh"required>
+											</div>
+										</div>
+
+										<div class="col-lg-5 col-md-6 pl-0">
+											<input class="form-control form-control-lg mb-3" type="text"
+												placeholder="Gia ve" name="giaVe"required> <input
+												class="form-control form-control-lg mb-3" type="text"
+												placeholder="Độ dài" name="doDai"required>
+											<div class="card-body border-bottom">
+												<div
+													class="card-header  border-bottom text-center text-justify">
+													<span>Danh mục phim</span>
+												</div>
+												<select multiple class="form-control" id="sel_Danhmuc"
+													name="danhMuc">
+													<%
+													int count = 0;
+													for (DanhMucPhim c : danhmucphim.getDanhMucPhim()) {
+														count++;
+												%>
+													<option><%=c.getTenDanhMuc()%></option>
+													<%
+													}
+												%>
+												</select>
+
+											</div>
+											<div class="card-body border-bottom">
+												<div
+													class="card-header  border-bottom text-center text-justify">
+													<span>Trạng thái</span>
+												</div>
+												<select multiple class="form-control" id="sel_TrangThai"
+													name="trangThai">
+													<%
+													int count1 = 0;
+													for (TrangThai b : tt.getTT()) {
+														count1++;
+														
+												%>
+													<option><%=b.getTenTrangThai()%></option>
+													<%
+													}
+												%>
+												</select>
+
+											</div>
+
+											<input type="submit" class="btn btn-info mb-3 " value="Thêm">
+										</div>
+										
+									</form>
+								</div>
+
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
 				<div class="row">
-				
+
 					<div class="col">
 						<div class="card card-small mb-4">
 							<div class="card-header border-bottom">
 								<h6 class="m-0">Danh Sách Phim</h6>
 							</div>
 							<div class="card-body p-0 pb-3 text-center table-responsive">
-							
+
 								<table class="table mb-0">
-									
+
 									<thead class="bg-light">
-									
+
 										<tr>
 
-											<th scope="col" class="border-0">Tiêu
-											 Đề</th>
+											<th scope="col" class="border-0">Tiêu Đề</th>
+											<th scope="col" class="border-0">Tên Danh Mục</th>
 											<th scope="col" class="border-0">Đạo Diễn</th>
-											
+
 											<th scope="col" class="border-0">Trạng Thái</th>
 											<th scope="col" class="border-0">Mô Tả</th>
 											<th scope="col" class="border-0">Thời Lượng</th>
@@ -249,29 +360,36 @@
 											<th scope="col" class="border-0">Tùy chọn</th>
 										</tr>
 										<%
+										int dem = 0;
 									for(Phim c:phim.getPhim()){
+										dem++;
 									%>
 										<tr>
 
 											<th scope="col" class="border-0"><%=c.getTieuDe()%></th>
+											<th scope="col" class="border-0"><%=c.getDanhMuc()%></th>
 											<th scope="col" class="border-0"><%=c.getDaoDien()%></th>
-											
-											<th scope="col" class="border-0"><%=c.getId_TrangThai() %></th>
+
+											<th scope="col" class="border-0"><%=c.getTrangThai() %></th>
 											<th scope="col" class="border-0"><%=c.getMoTa() %></th>
 											<th scope="col" class="border-0"><%=c.getDoDai() %></th>
 											<th scope="col" class="border-0"><%=c.getGiaVe() %></th>
 											<th scope="col" class="border-0"><%=c.getQuocGia() %></th>
 											<th scope="col" class="border-0"><%=c.getLinkAnh() %></th>
-											 <td>
-                                              <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                              <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmDeleting">
-                                                <i class="fa fa-trash"></i></button>
-                                            </td>
+											<td><a
+												href="/WebMovie/Views/UpdatePhim.jsp?command=update&id=<%=c.getId()%>&tieuDe=<%=c.getTieuDe()%>
+												&danhMuc=<%=c.getDanhMuc()%>&daoDien=<%=c.getDaoDien()%>
+												&moTa=<%=c.getMoTa()%>&giaVe=<%=c.getGiaVe()%>&linkAnh=<%=c.getLinkAnh()%>&urlTrailer=<%=c.getUrl_Trailer()%>
+												&doDai=<%=c.getDoDai()%>&quocGia=<%=c.getQuocGia()%>
+												"
+												class="btn btn-warning"> <i class="fa fa-edit"></i></a> <a
+												href="/WebMovie/PhimServlet?command=delete&id=<%=c.getId()%>"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
 										</tr>
-										
+
 										<%} %>
 									</thead>
-									
+
 									<tbody>
 
 									</tbody>

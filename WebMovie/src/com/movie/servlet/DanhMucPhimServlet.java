@@ -33,6 +33,7 @@ public class DanhMucPhimServlet extends HttpServlet {
 			}
 
 		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
 
 		}
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);

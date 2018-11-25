@@ -127,7 +127,8 @@ public class ZDanhMucPhim {
 	 public static void main(String[] args) throws ClassNotFoundException,
      SQLException {
 		ZDanhMucPhim z=new ZDanhMucPhim();
-		z.UpdateDanhMucPhim(new DanhMucPhim(11,"a1","b1"));
+		//z.UpdateDanhMucPhim(new DanhMucPhim(11,"a1","b1"));
+		z.getDanhMucPhim();
 		// phim.InsertPhim(new Phim("Bi Dien" ,1 ,"daodien1",1,"mota" ,"trailer" ,20 ,"quocgia" ,20 ,"linkanh")) ;
 		//phim.updatePhim(new Phim(6,"Bi Dien" ,1 ,"daodien1",1,"mota" ,"trailer" ,20 ,"quocgia" ,20 ,"linkanh")) ;
 		// phim.deletePhim(6);

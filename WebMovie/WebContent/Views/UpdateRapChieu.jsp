@@ -1,8 +1,3 @@
-<%@ page import="com.movie.Connect.*"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.movie.Controller.*"%>
-<%@ page import="com.movie.beans.*"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,7 +7,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Quản lý danh muc phim</title>
+<title>Shards Dashboard Lite - Free Bootstrap Admin Template –
+	DesignRevision</title>
 <meta name="description"
 	content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
 <meta name="viewport"
@@ -26,20 +22,13 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0"
-	href="${pageContext.request.contextPath}/Views/styles/shards-dashboards.1.1.0.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/Views/styles/extras.1.1.0.min.css">
+	href="styles/shards-dashboards.1.1.0.min.css">
+<link rel="stylesheet" href="styles/extras.1.1.0.min.css">
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.css">
 </head>
-
 <body class="h-100 accent-secondary active" data-color="danger">
-	<%
-		ZDanhMucPhim danhmucphim = new ZDanhMucPhim();
-	%>
 	<div class="container-fluid">
-		<div class="row" id="row_main">
+		<div class="row">
 			<aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
 				<div class="main-navbar">
 					<nav
@@ -49,9 +38,8 @@
 							<div class="d-table m-auto">
 								<img id="main-logo" class="d-inline-block align-top mr-1"
 									style="max-width: 25px;"
-									src="${pageContext.request.contextPath}/Views/images/shards-dashboards-logo.svg"
-									alt="Shards Dashboard"> <span
-									class="d-none d-md-inline ml-1">Trang quản lý</span>
+									src="images/shards-dashboards-logo.svg" alt="Shards Dashboard">
+								<span class="d-none d-md-inline ml-1">Trang quản lý</span>
 							</div>
 						</a> <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none"> <i
 							class="material-icons">&#xE5C4;</i>
@@ -76,7 +64,7 @@
 							href="TrangQuanLyPhim.jsp"> <i class="material-icons">edit</i>
 								<span>Quản lý phim</span>
 						</a></li>
-						<li class="nav-item "><a class="nav-link active "
+						<li class="nav-item"><a class="nav-link active"
 							href="TrangDanhMucPhim.jsp"> <i class="material-icons">vertical_split</i>
 								<span>Quản lý danh mục phim</span>
 						</a></li>
@@ -103,10 +91,8 @@
 				</div>
 			</aside>
 			<main
-				class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3"
-				id="main_pn">
+				class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
 			<div class="main-navbar sticky-top bg-white">
-				<!-- Main Navbar -->
 				<nav
 					class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
 					<form action="#"
@@ -195,123 +181,83 @@
 						</a>
 					</nav>
 				</nav>
-			</div>
-			<div class="main-content-container container-fluid px-4">
-				<!-- Page Header -->
-				<div class="page-header row no-gutters py-4">
-					<div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-						<span class="text-uppercase page-subtitle">Dashboard</span>
-						<h3 class="page-title">Blog Overview</h3>
+				<div class="main-content-container container-fluid px-4">
+					<!-- Page Header -->
+					<div class="page-header row no-gutters py-4">
+						<div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+							<span class="text-uppercase page-subtitle">Dashboard</span>
+							<h3 class="page-title">Update Danh Mục</h3>
+						</div>
 					</div>
-				</div>
+					<div class="row">
 
-				<button type="button" class="btn btn-info mb-3" data-toggle="modal"
-					data-target="#myModal">Thêm Danh Mục Phim +</button>
-				<div class="row">
-					<!-- The Modal -->
-					<div class="modal" id="myModal">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<!-- Modal Header -->
-								<div class="modal-header">
-									<h4 class="modal-title">Thêm Danh Mục Phim</h4>
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-								</div>
-								<!-- Modal body -->
-								<div class="modal-body">
-									<form class="add-new-post"
-										action="/WebMovie/DanhMucPhimServlet" method="post">
-										<input type="hidden" name="command" value="insert"> <input
+						<div class='col-lg-9 col-md-12'>
+							<div class="card card-small mb-3">
+								<div class="card-body">
+									<form class="add-new-post" action="/WebMovie/RapChieuServlet"
+										method="post">
+										<input type="hidden" name="command" value="update"> <input
+											type="hidden" name="idRapChieu" value="${param.id }">  <input
 											class="form-control form-control-lg mb-3" type="text"
-											placeholder="Tên danh mục" name="tenDanhMuc" required>
-										<input class="form-control form-control-lg mb-3" type="text"
-											placeholder="Mô tả" name="moTa" required>
+											placeholder="Địa điểm" name="diaDiem"
+											value="${param.diaDiem }" required> <input
+											class="form-control form-control-lg mb-3" type="text"
+											placeholder="Tên Rạp" name="tenRap" value="${param.tenRap }"
+											required> <input
+											class="form-control form-control-lg mb-3" type="text"
+											placeholder="Số lượng rạp" name="soLuongRap" value="${param.soluong }"
+											required>
 										<div class="col">
 
-											<input type="submit" class="btn btn-info mb-3 " value="Thêm">
+											<input type="submit" class="btn btn-info mb-3 "
+												value="Update">
 										</div>
 
 									</form>
+
 								</div>
-
 							</div>
 						</div>
-					</div>
-
-					<div class="col">
-						<div class="card card-small mb-4">
-							<div class="card-header border-bottom">
-								<h6 class="m-0">Danh Sách Danh mục</h6>
-							</div>
-							<div class="card-body p-0 pb-3 text-center table-responsive">
-
-								<table class="table mb-0">
-
-									<thead class="bg-light">
-
-										<tr>
-											<th scope="col" class="border-0">STT</th>
-											<th scope="col" class="border-0">ID</th>
-											<th scope="col" class="border-0">Tên Danh Mục</th>
-											<th scope="col" class="border-0">Mô tả</th>
-											<th scope="col" class="border-0">Tùy chọn</th>
-
-
-										</tr>
-
-										<%
-											int count = 0;
-											for (DanhMucPhim c : danhmucphim.getDanhMucPhim()) {
-												count++;
-										%>
-										<tr>
-											<th scope="col" class="border-0"><%=count%></th>
-											<th scope="col" class="border-0"><%=c.getId()%></th>
-											<th scope="col" class="border-0"><%=c.getTenDanhMuc()%></th>
-											<th scope="col" class="border-0"><%=c.getMoTa()%></th>
-											<td><a
-												href="/WebMovie/Views/UpdateDanhMucPhim.jsp?command=update&id=<%=c.getId()%>&tenDanhMuc=<%=c.getTenDanhMuc()%>&moTa=<%=c.getMoTa()%>"
-												class="btn btn-warning"><i class="fa fa-edit"></i></a> <a
-												href="/WebMovie/DanhMucPhimServlet?command=delete&id=<%=c.getId()%>"
-												class="btn btn-danger"> <i class="fa fa-trash"></i></a></td>
-										</tr>
-										<%
-											}
-										%>
-									</thead>
-
-									<tbody>
-
-									</tbody>
-								</table>
-							</div>
-						</div>
-
-						<nav aria-label="Page navigation example 	">
-							<ul class="pagination float-right">
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<c:forEach var="i" begin="1" end="${numberPage}">
-									<div class="page-item" id="pageNumber${i}">
-										<a class="page-link">${i}</a>
-									</div>
-								</c:forEach>
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-							</ul>
-						</nav>
 
 					</div>
 				</div>
+
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath}/Views/scripts/app/app-blog-new-post.1.1.0.js"></script>
+				<script>
+	$(document).ready(
+			function() {
+				$("#addCategory").click(
+						function() {
+							$("#sel_Danhmuc").empty();
+
+							$.ajax({
+								url : 'Getcategory',
+								data : {
+									categoryName : $('#CategoryName').val()
+								},
+								dataType : 'html',
+								success : function(data) {
+									var obj = $.parseJSON(data);
+									$.each(obj, function(index, el) {
+										$(
+												"<option class='dropdown-item'>"
+														+ el.tenDanhMuc
+														+ "</option>")
+												.appendTo($("#sel_Danhmuc"));
+									});
+								}
+							});
+							$("#CategoryName").val("");
+
+						});
+			});
+</script>
+
 			</div>
 			</main>
-
-
-
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -330,93 +276,7 @@
 	<script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Views/scripts/extras.1.1.0.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Views/scripts/shards-dashboards.1.1.0.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Views/scripts/jquery-3.3.1.min"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/Views/scripts/app/app-blog-new-post.1.1.0.js"></script>
-	<script>
-		$(document)
-				.ready(
-
-						function() {
-
-							var tempBtnClickPageNumber = $(".page-item");
-							$(".page-item")
-									.click(
-											function() {
-												$("tbody").empty();
-												var bid = $(this).attr('id');
-												//lay text của this
-												var b = $("#" + bid + "")
-														.text().trim();
-												//active button
-												if (tempBtnClickPageNumber != $(this)) {
-													tempBtnClickPageNumber
-															.removeClass("active")
-													$(this).addClass("active");
-												} else {
-													$(this).addClass("active");
-												}
-
-												$
-														.ajax({
-															url : 'table',
-															data : {
-																page : b
-															},
-															dataType : 'html',
-															success : function(
-																	data) {
-
-																var obj = $
-																		.parseJSON(data);
-																console
-																		.log(obj);
-																$
-																		.each(
-																				obj,
-																				function(
-																						index,
-																						el) {
-																					$(
-																							"<tr> <td>"
-																									+ el.tieuDe
-																									+ "</td><td>"
-																									+ el.daoDien
-																									+ "</td><td>"
-																									+ el.dienVien
-																									+ "</td><td>"
-																									+ el.id_TrangThai
-																									+ "</td><td>"
-																									+ el.moTa
-																									+ "</td><td>"
-																									+ el.doDai
-																									+ "</td><td>"
-																									+ el.quocGia
-																									+ "</td><td>"
-																									+ "<a href='#'><i class='fa fa-edit' style='font-size:24px'></i></a>"
-																									+ "<a href='#'><i class='fa fa-trash' style='font-size:24px'></i></a>"
-																									+ "</td>"
-																									+ "</tr>")
-																							.appendTo(
-																									$("tbody"));
-																				});
-
-															}
-														});
-												tempBtnClickPageNumber = $(this);
-											});
-
-						});
-	</script>
-
+	<script src="scripts/extras.1.1.0.min.js"></script>
+	<script src="scripts/shards-dashboards.1.1.0.min.js"></script>
+	<script src="scripts/app/app-blog-overview.1.1.0.js"></script>
 </body>
-
-</html>
-

@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Quản lý danh muc phim</title>
+<title>Quản lý Rap Chieu</title>
 <meta name="description"
 	content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
 <meta name="viewport"
@@ -36,7 +36,7 @@
 
 <body class="h-100 accent-secondary active" data-color="danger">
 	<%
-		ZDanhMucPhim danhmucphim = new ZDanhMucPhim();
+		ZRapChieu rapchieu = new ZRapChieu();
 	%>
 	<div class="container-fluid">
 		<div class="row" id="row_main">
@@ -72,11 +72,11 @@
 				</form>
 				<div class="nav-wrapper">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link "
+						<li class="nav-item"><a class="nav-link active"
 							href="TrangQuanLyPhim.jsp"> <i class="material-icons">edit</i>
 								<span>Quản lý phim</span>
 						</a></li>
-						<li class="nav-item "><a class="nav-link active "
+						<li class="nav-item"><a class="nav-link "
 							href="TrangDanhMucPhim.jsp"> <i class="material-icons">vertical_split</i>
 								<span>Quản lý danh mục phim</span>
 						</a></li>
@@ -196,123 +196,130 @@
 					</nav>
 				</nav>
 			</div>
+
+
 			<div class="main-content-container container-fluid px-4">
 				<!-- Page Header -->
 				<div class="page-header row no-gutters py-4">
 					<div class="col-12 col-sm-4 text-center text-sm-left mb-0">
 						<span class="text-uppercase page-subtitle">Dashboard</span>
-						<h3 class="page-title">Blog Overview</h3>
+						<h3 class="page-title">Quản Lý Rạp Chiếu</h3>
 					</div>
 				</div>
+				<div class="col">
+					<div class="row">
+						<button type="button" class="btn btn-info mb-3"
+							data-toggle="modal" data-target="#myModal">Thêm Rạp
+							Chiếu</button>
+						<!-- The Modal -->
+						<div class="modal" id="myModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<!-- Modal Header -->
+									<div class="modal-header">
+										<h4 class="modal-title">Thêm Rạp Chiếu</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+									<!-- Modal body -->
+									<div class="modal-body">
+										<form class="add-new-post" action="/WebMovie/RapChieuServlet"
+											method="post">
+											<input type="hidden" name="command" value="insert"> <input
+												class="form-control form-control-lg mb-3" type="text"
+												placeholder="Id Rạp Chiếu" name="idRapChieu"> <input
+												class="form-control form-control-lg mb-3" type="text"
+												placeholder="Địa Điểm" name="diaDiem"> <input
+												class="form-control form-control-lg mb-3" type="text"
+												placeholder="Tên Rạp" name="tenRap"> <input
+												class="form-control form-control-lg mb-3" type="text"
+												placeholder="Số lượng rạp" name="soLuongRap">
+											<div class="col">
 
-				<button type="button" class="btn btn-info mb-3" data-toggle="modal"
-					data-target="#myModal">Thêm Danh Mục Phim +</button>
-				<div class="row">
-					<!-- The Modal -->
-					<div class="modal" id="myModal">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<!-- Modal Header -->
-								<div class="modal-header">
-									<h4 class="modal-title">Thêm Danh Mục Phim</h4>
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<input type="submit" class="btn btn-info mb-3 " value="Thêm">
+											</div>
+										</form>
+									</div>
+
+
 								</div>
-								<!-- Modal body -->
-								<div class="modal-body">
-									<form class="add-new-post"
-										action="/WebMovie/DanhMucPhimServlet" method="post">
-										<input type="hidden" name="command" value="insert"> <input
-											class="form-control form-control-lg mb-3" type="text"
-											placeholder="Tên danh mục" name="tenDanhMuc" required>
-										<input class="form-control form-control-lg mb-3" type="text"
-											placeholder="Mô tả" name="moTa" required>
-										<div class="col">
+							</div>
 
-											<input type="submit" class="btn btn-info mb-3 " value="Thêm">
-										</div>
+						</div>
+							
 
-									</form>
-								</div>
-
+						<div class="col-lg-3 float-right">
+							<div class="dropdown ">
+								<button class="btn btn-info dropdown-toggle" type="button"
+									data-toggle="dropdown">
+									<i class='fas fa-filter' style='font-size: 14px'></i>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Hcm</a></li>
+									<li><a href="#">Cần Thơ</a></li>
+									<li><a href="#">...</a></li>
+								</ul>
 							</div>
 						</div>
 					</div>
-
+				</div>
+				<div class="row">
 					<div class="col">
 						<div class="card card-small mb-4">
 							<div class="card-header border-bottom">
-								<h6 class="m-0">Danh Sách Danh mục</h6>
+								<h6 class="m-0">Danh Sách Rạp Chiếu</h6>
 							</div>
-							<div class="card-body p-0 pb-3 text-center table-responsive">
-
+							<div class="card-body p-0 pb-3 text-center">
 								<table class="table mb-0">
-
 									<thead class="bg-light">
 
 										<tr>
 											<th scope="col" class="border-0">STT</th>
-											<th scope="col" class="border-0">ID</th>
-											<th scope="col" class="border-0">Tên Danh Mục</th>
-											<th scope="col" class="border-0">Mô tả</th>
+											<th scope="col" class="border-0">Mã Rạp Chiếu</th>
+											<th scope="col" class="border-0">Địa Điểm</th>
+											<th scope="col" class="border-0">Tên Rạp</th>
+											<th scope="col" class="border-0">Số Lượng Rạp Hiện Tại</th>
 											<th scope="col" class="border-0">Tùy chọn</th>
-
-
 										</tr>
-
 										<%
 											int count = 0;
-											for (DanhMucPhim c : danhmucphim.getDanhMucPhim()) {
+											for (RapChieu c : rapchieu.getRapChieu()) {
 												count++;
 										%>
 										<tr>
 											<th scope="col" class="border-0"><%=count%></th>
-											<th scope="col" class="border-0"><%=c.getId()%></th>
-											<th scope="col" class="border-0"><%=c.getTenDanhMuc()%></th>
-											<th scope="col" class="border-0"><%=c.getMoTa()%></th>
-											<td><a
-												href="/WebMovie/Views/UpdateDanhMucPhim.jsp?command=update&id=<%=c.getId()%>&tenDanhMuc=<%=c.getTenDanhMuc()%>&moTa=<%=c.getMoTa()%>"
+											<th scope="col" class="border-0"><%=c.getId_RapChieu()%></th>
+											<th scope="col" class="border-0"><%=c.getDiaDiem()%></th>
+											<th scope="col" class="border-0"><%=c.getTenRap()%></th>
+											<th scope="col" class="border-0"><%=c.getSoLuongRap()%></th>
+											<td>
+												<a
+												href="/WebMovie/Views/UpdateRapChieu.jsp?command=update&id=<%=c.getId_RapChieu()%>&diaDiem=<%=c.getDiaDiem()%>
+												&tenRap=<%=c.getTenRap()%>&soluong=<%=c.getSoLuongRap()%>"
 												class="btn btn-warning"><i class="fa fa-edit"></i></a> <a
-												href="/WebMovie/DanhMucPhimServlet?command=delete&id=<%=c.getId()%>"
-												class="btn btn-danger"> <i class="fa fa-trash"></i></a></td>
+												href="/WebMovie/RapChieuServlet?command=delete&id=<%=c.getId_RapChieu()%>"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a>
+											</td>
 										</tr>
 										<%
 											}
 										%>
+
 									</thead>
-
-									<tbody>
-
-									</tbody>
+								
 								</table>
 							</div>
 						</div>
-
-						<nav aria-label="Page navigation example 	">
-							<ul class="pagination float-right">
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<c:forEach var="i" begin="1" end="${numberPage}">
-									<div class="page-item" id="pageNumber${i}">
-										<a class="page-link">${i}</a>
-									</div>
-								</c:forEach>
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-							</ul>
-						</nav>
-
 					</div>
 				</div>
 			</div>
+
+
 			</main>
 
 
 
 		</div>
+
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

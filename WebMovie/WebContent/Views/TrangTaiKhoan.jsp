@@ -1,7 +1,7 @@
-<%@ page import="com.movie.Connect.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="com.movie.Controller.*" %>
-<%@ page import="com.movie.beans.*" %>
+<%@ page import="com.movie.Connect.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.movie.Controller.*"%>
+<%@ page import="com.movie.beans.*"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Quản lý phim</title>
+<title>Danh sách Tài Khoản</title>
 <meta name="description"
 	content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
 <meta name="viewport"
@@ -35,8 +35,9 @@
 </head>
 
 <body class="h-100 accent-secondary active" data-color="danger">
-<%ZPhim phim=new ZPhim(); 
-										%>
+	<%
+		ZTaiKhoan tk = new ZTaiKhoan();
+	%>
 	<div class="container-fluid">
 		<div class="row" id="row_main">
 			<aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
@@ -69,53 +70,38 @@
 							placeholder="Search for something..." aria-label="Search">
 					</div>
 				</form>
-				  <div class="nav-wrapper">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="MainQuanLyPhim.jsp">
-                             <i class="material-icons">edit</i>
-                             <span>Quản lý phim</span>
-                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="MainDanhMucPhim.jsp">
-                  <i class="material-icons">vertical_split</i>
-                  <span>Quản lý danh mục phim</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="add-new-post.html">
-                  <i class="material-icons">note_add</i>
-                  <span>Quản lý lịch chiếu</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="form-components.html">
-                  <i class="material-icons">view_module</i>
-                  <span>Quản lý Khách hàng</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="tables.html">
-                  <i class="material-icons">table_chart</i>
-                  <span>Quản lý thông tin cá nhân</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="user-profile-lite.html">
-                  <i class="material-icons">person</i>
-                  <span>User Profile</span>
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="errors.html">
-                  <i class="material-icons">error</i>
-                  <span>Errors</span>
-                </a>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
+				<div class="nav-wrapper">
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link active"
+							href="TrangQuanLyPhim.jsp"> <i class="material-icons">edit</i>
+								<span>Quản lý phim</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="TrangDanhMucPhim.jsp"> <i class="material-icons">vertical_split</i>
+								<span>Quản lý danh mục phim</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="add-new-post.html"> <i class="material-icons">note_add</i>
+								<span>Quản lý lịch chiếu</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="form-components.html"> <i class="material-icons">view_module</i>
+								<span>Quản lý Khách hàng</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link " href="tables.html">
+								<i class="material-icons">table_chart</i> <span>Quản lý
+									thông tin cá nhân</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="user-profile-lite.html"> <i class="material-icons">person</i>
+								<span>User Profile</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link " href="errors.html">
+								<i class="material-icons">error</i> <span>Errors</span>
+						</a></li>
+					</ul>
+				</div>
+			</aside>
 			<main
 				class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3"
 				id="main_pn">
@@ -210,101 +196,81 @@
 					</nav>
 				</nav>
 			</div>
+
+
 			<div class="main-content-container container-fluid px-4">
 				<!-- Page Header -->
 				<div class="page-header row no-gutters py-4">
 					<div class="col-12 col-sm-4 text-center text-sm-left mb-0">
 						<span class="text-uppercase page-subtitle">Dashboard</span>
-						<h3 class="page-title">Blog Overview</h3>
+						<h3 class="page-title">Danh sách Tài Khoản</h3>
 					</div>
 				</div>
-				 <div class="col">
-                    <a href="#" class="btn btn-info mb-3 " role="button">Thêm Phim + </a>
-                  </div>
+				<div class="col">
+					<div class="row">
+						<button type="button" class="btn btn-info mb-3"
+							data-toggle="modal" data-target="#myModal">Thêm Tài
+							Khoản+</button>
+
+
+
+
+					</div>
+				</div>
 				<div class="row">
-				
 					<div class="col">
 						<div class="card card-small mb-4">
 							<div class="card-header border-bottom">
-								<h6 class="m-0">Danh Sách Phim</h6>
+								<h6 class="m-0">Danh Sách Tài Khoản</h6>
 							</div>
-							<div class="card-body p-0 pb-3 text-center table-responsive">
-							
+							<div class="card-body p-0 pb-3 text-center">
 								<table class="table mb-0">
-									
 									<thead class="bg-light">
-									
-										<tr>
 
-											<th scope="col" class="border-0">Tiêu
-											 Đề</th>
-											<th scope="col" class="border-0">Đạo Diễn</th>
-											
-											<th scope="col" class="border-0">Trạng Thái</th>
-											<th scope="col" class="border-0">Mô Tả</th>
-											<th scope="col" class="border-0">Thời Lượng</th>
-											<th scope="col" class="border-0">Giá Vé</th>
-											<th scope="col" class="border-0">Quốc Gia</th>
-											<th scope="col" class="border-0">Link Anh</th>
+										<tr>
+											<th scope="col" class="border-0">STT</th>
+											<th scope="col" class="border-0">Tên Tài Khoản</th>
+											<th scope="col" class="border-0">Mật khẩu</th>
+											<th scope="col" class="border-0">Quyền hạn</th>
+
 											<th scope="col" class="border-0">Tùy chọn</th>
 										</tr>
 										<%
-									for(Phim c:phim.getPhim()){
-									%>
+											int count = 0;
+											for (TaiKhoan c : tk.getTaiKhoan()) {
+												count++;
+										%>
 										<tr>
+											<th scope="col" class="border-0"><%=count%></th>
+											<th scope="col" class="border-0"><%=c.getTenDangNhap()%></th>
+											<th scope="col" class="border-0"><%=c.getMatKhau()%></th>
+											<th scope="col" class="border-0"><%=c.getRole()%></th>
 
-											<th scope="col" class="border-0"><%=c.getTieuDe()%></th>
-											<th scope="col" class="border-0"><%=c.getDaoDien()%></th>
-											
-											<th scope="col" class="border-0"><%=c.getId_TrangThai() %></th>
-											<th scope="col" class="border-0"><%=c.getMoTa() %></th>
-											<th scope="col" class="border-0"><%=c.getDoDai() %></th>
-											<th scope="col" class="border-0"><%=c.getGiaVe() %></th>
-											<th scope="col" class="border-0"><%=c.getQuocGia() %></th>
-											<th scope="col" class="border-0"><%=c.getLinkAnh() %></th>
-											 <td>
-                                              <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                              <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmDeleting">
-                                                <i class="fa fa-trash"></i></button>
-                                            </td>
+											<td><a href="#" class="btn btn-warning"><i
+													class="fa fa-edit"></i></a> <a
+												href="/WebMovie/TaiKhoanServlet?command=delete&id=<%=c.getId()%>"
+												class="btn btn-danger"> <i class="fa fa-trash"></i></a></td>
 										</tr>
-										
-										<%} %>
-									</thead>
-									
-									<tbody>
+										<%
+											}
+										%>
 
-									</tbody>
+									</thead>
+
 								</table>
 							</div>
 						</div>
-
-						<nav aria-label="Page navigation example 	">
-							<ul class="pagination float-right">
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<c:forEach var="i" begin="1" end="${numberPage}">
-									<div class="page-item" id="pageNumber${i}">
-										<a class="page-link">${i}</a>
-									</div>
-								</c:forEach>
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-							</ul>
-						</nav>
-
 					</div>
 				</div>
 			</div>
+
+
 			</main>
 
 
 
 		</div>
+
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -333,69 +299,79 @@
 	<script
 		src="${pageContext.request.contextPath}/Views/scripts/app/app-blog-new-post.1.1.0.js"></script>
 	<script>
-		$(document).ready(
-				
-				function() {
-					
-					var tempBtnClickPageNumber=$(".page-item");
-					$(".page-item").click(
-							function() {
-								$("tbody").empty();
-								var bid = $(this).attr('id');
-								//lay text của this
-								var b=$("#"+bid+"").text().trim();
-								//active button
-								if(tempBtnClickPageNumber!=$(this))
-									{
-									tempBtnClickPageNumber.removeClass( "active" )
-									$( this ).addClass( "active" );
-									}
-								else
-									{
-										$( this ).addClass( "active" );
-									}
-								
-								$.ajax({
-									url : 'table',
-									data : {
-										page : b
-									},
-									dataType : 'html',
-									success : function(data) {
-								
-										var obj = $.parseJSON(data);
-										console.log(obj);
-										$.each(obj, function(index, el) {
-											$(
-													"<tr> <td>"
-															+ el.tieuDe
-															+ "</td><td>"
-															+ el.daoDien
-															+ "</td><td>"
-															+ el.dienVien
-															+ "</td><td>"
-															+ el.id_TrangThai
-															+ "</td><td>"
-															+ el.moTa
-															+ "</td><td>"
-															+ el.doDai
-															+ "</td><td>"
-															+ el.quocGia
-															+ "</td><td>"  
-															+   "<a href='#'><i class='fa fa-edit' style='font-size:24px'></i></a>"
-			                                                + 	"<a href='#'><i class='fa fa-trash' style='font-size:24px'></i></a>"
-	                                               			+ "</td>"
-															+ "</tr>")
-													.appendTo($("tbody"));
-										});
+		$(document)
+				.ready(
 
-									}
-								});
-								tempBtnClickPageNumber=$(this);
-							});
-					
-					
-				});
+						function() {
+
+							var tempBtnClickPageNumber = $(".page-item");
+							$(".page-item")
+									.click(
+											function() {
+												$("tbody").empty();
+												var bid = $(this).attr('id');
+												//lay text của this
+												var b = $("#" + bid + "")
+														.text().trim();
+												//active button
+												if (tempBtnClickPageNumber != $(this)) {
+													tempBtnClickPageNumber
+															.removeClass("active")
+													$(this).addClass("active");
+												} else {
+													$(this).addClass("active");
+												}
+
+												$
+														.ajax({
+															url : 'table',
+															data : {
+																page : b
+															},
+															dataType : 'html',
+															success : function(
+																	data) {
+
+																var obj = $
+																		.parseJSON(data);
+																console
+																		.log(obj);
+																$
+																		.each(
+																				obj,
+																				function(
+																						index,
+																						el) {
+																					$(
+																							"<tr> <td>"
+																									+ el.tieuDe
+																									+ "</td><td>"
+																									+ el.daoDien
+																									+ "</td><td>"
+																									+ el.dienVien
+																									+ "</td><td>"
+																									+ el.id_TrangThai
+																									+ "</td><td>"
+																									+ el.moTa
+																									+ "</td><td>"
+																									+ el.doDai
+																									+ "</td><td>"
+																									+ el.quocGia
+																									+ "</td><td>"
+																									+ "<a href='#'><i class='fa fa-edit' style='font-size:24px'></i></a>"
+																									+ "<a href='#'><i class='fa fa-trash' style='font-size:24px'></i></a>"
+																									+ "</td>"
+																									+ "</tr>")
+																							.appendTo(
+																									$("tbody"));
+																				});
+
+															}
+														});
+												tempBtnClickPageNumber = $(this);
+											});
+
+						});
 	</script>
 
 </body>

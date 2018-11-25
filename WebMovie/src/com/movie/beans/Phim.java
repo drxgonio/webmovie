@@ -6,15 +6,22 @@ public class Phim {
 
 	
 	private String daoDien;
-	private int id_DanhMuc;
+	private String danhMuc;
 	
-	private int id_TrangThai;
+	private String trangThai;
 	private String moTa;
 	private String url_Trailer;
 	private int doDai;
 	private String quocGia;
 	private int giaVe;
 	private String linkAnh;
+	private int doTuoi;
+	public int getDoTuoi() {
+		return doTuoi;
+	}
+	public void setDoTuoi(int doTuoi) {
+		this.doTuoi = doTuoi;
+	}
 	public String getDaoDien() {
 		return daoDien;
 	}
@@ -42,12 +49,7 @@ public class Phim {
 		this.tieuDe = tieuDe;
 	}
 
-	public int getId_TrangThai() {
-		return id_TrangThai;
-	}
-	public void setId_TrangThai(int id_TrangThai) {
-		this.id_TrangThai = id_TrangThai;
-	}
+
 	public String getMoTa() {
 		return moTa;
 	}
@@ -79,23 +81,30 @@ public class Phim {
 	public void setLinkAnh(String linkAnh) {
 		this.linkAnh = linkAnh;
 	}
-	public int getId_DanhMuc() {
-		return id_DanhMuc;
+
+	  public String getDanhMuc() {
+		return danhMuc;
 	}
-	public void setId_DanhMuc(int id_DanhMuc) {
-		this.id_DanhMuc = id_DanhMuc;
+	public void setDanhMuc(String danhMuc) {
+		this.danhMuc = danhMuc;
 	}
-	  public Phim() {
+	public String getTrangThai() {
+		return trangThai;
+	}
+	public void setTrangThai(String trangThai) {
+		this.trangThai = trangThai;
+	}
+	public Phim() {
 		  
 	   }
 	 
-	  public Phim(String tieuDe,int id_DanhMuc,String daoDien,int id_TrangThai,String moTa,String url_Trailer,
+	  public Phim(String tieuDe,String danhMuc,String daoDien,String trangThai,String moTa,String url_Trailer,
 			  int doDai,String quocGia,int giaVe,String linkanh) {
 	    
 	       this.tieuDe = tieuDe;
 	       this.daoDien = daoDien;
-	       this.id_DanhMuc=id_DanhMuc;
-	       this.id_TrangThai=id_TrangThai;
+	       this.danhMuc=danhMuc;
+	       this.trangThai=trangThai;
 	       this.moTa=moTa;
 	       this.url_Trailer=url_Trailer;
 	       this.doDai=doDai;
@@ -103,19 +112,35 @@ public class Phim {
 	       this.giaVe=giaVe;
 	       this.linkAnh=linkanh;
 	   }
-	  public Phim(int id,String tieuDe,int id_DanhMuc,String daoDien,int id_TrangThai,String moTa,String url_Trailer,
-			  int doDai,String quocGia,int giaVe,String linkanh) {
-		  this.id=id;
+	  public Phim(String tieuDe,String daoDien,String moTa,String url_Trailer,
+			  int doDai,String quocGia,int giaVe,String linkanh,int doTuoi,String danhMuc,String trangThai) {
+	    
 	       this.tieuDe = tieuDe;
 	       this.daoDien = daoDien;
-	       this.id_DanhMuc=id_DanhMuc;
-	       this.id_TrangThai=id_TrangThai;
+	       this.danhMuc=danhMuc;
+	       this.trangThai=trangThai;
 	       this.moTa=moTa;
 	       this.url_Trailer=url_Trailer;
 	       this.doDai=doDai;
 	       this.quocGia=quocGia;
 	       this.giaVe=giaVe;
 	       this.linkAnh=linkanh;
+	       this.doTuoi=doTuoi;
+	   }
+	  public Phim(int id,String tieuDe,String daoDien,String moTa,String url_Trailer,
+			  int doDai,String quocGia,int giaVe,String linkanh,int doTuoi,String danhMuc,String trangThai) {
+		  this.id=id;
+	       this.tieuDe = tieuDe;
+	       this.daoDien = daoDien;
+	       this.danhMuc=danhMuc;
+	       this.trangThai=trangThai;
+	       this.moTa=moTa;
+	       this.url_Trailer=url_Trailer;
+	       this.doDai=doDai;
+	       this.quocGia=quocGia;
+	       this.giaVe=giaVe;
+	       this.linkAnh=linkanh;
+	       this.doTuoi=doTuoi;
 	   }
 
 

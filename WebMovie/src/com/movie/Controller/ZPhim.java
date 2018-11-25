@@ -19,7 +19,7 @@ public class ZPhim {
 	public  ArrayList<Phim> getPhim() throws SQLException, ClassNotFoundException{
 		 conn = ConnectionUtils.getMyConnection();
      	      
-        String sql = "select * from SelectFilms()";
+        String sql = "select * from getPhim()";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         ArrayList<Phim> list = new ArrayList<>();
@@ -32,10 +32,10 @@ public class ZPhim {
 			film.setId(rs.getInt(1));
 
 			film.setTieuDe(rs.getString(2)); 
-			film.setId_DanhMuc(rs.getInt(3));
+			film.setDanhMuc(rs.getString(3));
 			film.setDaoDien(rs.getString(4));
 	   
-			film.setId_TrangThai(rs.getInt(5));
+			film.setTrangThai(rs.getString(5));
 			film.setMoTa(rs.getString(6));
 	     	film.setUrl_Trailer(rs.getString(7));
 	     	film.setDoDai(rs.getInt(8));
@@ -53,22 +53,28 @@ public class ZPhim {
 	{
 		 try {
 			conn = ConnectionUtils.getMyConnection();
-			String sql="Exec dbo.InsertFilm ?,?,?,?,?,?,?,?,?,? ";
+			String sql="Exec dbo.InsertFilm ?,?,?,?,?,?,?,?,?,?,? ";
 			//Exec dbo.InsertFilm 'tieude'  ,1 ,'daodien1',1,'mota' ,'trailer' ,20 ,'quocgia' ,20 ,'linkanh' 
+			
+
+		//	Exec dbo.InsertFilm 'tieude' ,'daodien1','mota' ,'trailer' ,20 ,'quocgia' ,20 ,'linkanh' ,19,'Phim Cam Tu','Phim 16+'
 			try
 			{
 				PreparedStatement ps=conn.prepareCall(sql);
 				//ps.setInt(1,c.getId() );
 				ps.setString(1, c.getTieuDe());
-				ps.setInt(2, c.getId_DanhMuc());
-				ps.setString(3, c.getDaoDien());
-				ps.setInt(4, c.getId_TrangThai());
-				ps.setString(5, c.getMoTa());
-				ps.setString(6, c.getUrl_Trailer());
-				ps.setInt(7, c.getDoDai());
-				ps.setString(8, c.getQuocGia());
-				ps.setInt(9, c.getGiaVe());
-				ps.setString(10,c.getLinkAnh());
+			
+				ps.setString(2, c.getDaoDien());
+			
+				ps.setString(3, c.getMoTa());
+				ps.setString(4, c.getUrl_Trailer());
+				ps.setInt(5, c.getDoDai());
+				ps.setString(6, c.getQuocGia());
+				ps.setInt(7, c.getGiaVe());
+				ps.setString(8,c.getLinkAnh());
+				ps.setInt(9, c.getDoTuoi());
+				ps.setString(10,c.getDanhMuc());
+				ps.setString(11,c.getTrangThai());
 				return ps.executeUpdate()==1;
 			}
 			catch (SQLException ex){
@@ -89,21 +95,25 @@ public class ZPhim {
 	{		
 		try {
 			conn = ConnectionUtils.getMyConnection();
-			String sql="Exec dbo.UpdateFilm ?,?,?,?,?,?,?,?,?,?,?";
+			String sql="Exec dbo.UpdateFilm ?,?,?,?,?,?,?,?,?,?,?,?";
 			try
 			{
 				PreparedStatement ps=conn.prepareCall(sql);
 				ps.setInt(1,c.getId() );
 				ps.setString(2, c.getTieuDe());
-				ps.setInt(3, c.getId_DanhMuc());
-				ps.setString(4, c.getDaoDien());
-				ps.setInt(5, c.getId_TrangThai());
-				ps.setString(6, c.getMoTa());
-				ps.setString(7, c.getUrl_Trailer());
-				ps.setInt(8, c.getDoDai());
-				ps.setString(9, c.getQuocGia());
-				ps.setInt(10, c.getGiaVe());
-				ps.setString(11,c.getLinkAnh());
+				
+				ps.setString(3, c.getDaoDien());
+				
+				ps.setString(4, c.getMoTa());
+				ps.setString(5, c.getUrl_Trailer());
+				ps.setInt(6, c.getDoDai());
+				ps.setString(7, c.getQuocGia());
+				ps.setInt(8, c.getGiaVe());
+				ps.setString(9,c.getLinkAnh());
+				ps.setInt(10, c.getDoTuoi());
+				ps.setString(11,c.getDanhMuc());
+				ps.setString(12,c.getTrangThai());
+				
 				return ps.executeUpdate()==1;
 			}
 			catch (SQLException ex){
@@ -127,7 +137,7 @@ public class ZPhim {
 	{
 		try {
 			conn = ConnectionUtils.getMyConnection();
-			String sql="Exec dbo.DeleteFilm ?";
+			String sql="Exec dbo.detelePhim ?";
 			try {
 				PreparedStatement ps=conn.prepareCall(sql);
 				ps.setInt(1,id );
@@ -154,8 +164,7 @@ public class ZPhim {
 	 public static void main(String[] args) throws ClassNotFoundException,
      SQLException {
 		 ZPhim phim=new ZPhim();
-		 phim.InsertPhim(new Phim("aâ" ,1 ,"daodien1",1,"mota" ,"trailer" ,20 ,"quocgia" ,20 ,"linkanh")) ;
-		//phim.updatePhim(new Phim(6,"Bi Dien" ,1 ,"daodien1",1,"mota" ,"trailer" ,20 ,"quocgia" ,20 ,"linkanh")) ;
-		// phim.deletePhim(6);
+		// phim.InsertPhim(new Phim("tieude" ,"daodien1","mota" ,"trailer" ,2 ,"quocgia" ,2 ,"linkanh" ,19,"Phim Cam Tu","Phim 16+")) ;
+		 phim.updatePhim (new Phim(11,"cc" ,"daodien" ,"mota" ,"trailer" ,20,"quocgia" ,20 ,"linkanh" ,1888,"Phim Cam Tu","Phim 18+"));
 	 }
 }

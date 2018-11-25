@@ -1,8 +1,9 @@
 eclipse.preferences.version=1
 encoding//WebContent/Views/MainForm.jsp=UTF-8
-encoding//WebContent/Views/Phim.jsp=UTF-8
-encoding//WebContent/Views/ThemDanhMucPhim.jsp=UTF-8
-encoding//src/com/movie/Controller/Test.java=UTF-8
 encoding//src/com/movie/Controller/ZDanhMucPhim.java=UTF-8
 encoding//src/com/movie/Controller/ZPhim.java=UTF-8
+encoding//src/com/movie/Controller/ZRapChieu.java=UTF-8
+encoding//src/com/movie/Controller/ZTaiKhoan.java=UTF-8
+encoding//src/com/movie/Controller/ZTrangThai.java=UTF-8
 encoding//src/com/movie/servlet/DanhMucPhimServlet.java=UTF-8
+encoding//src/com/movie/servlet/TaiKhoanServlet.java=UTF-8
