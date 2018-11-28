@@ -36,6 +36,15 @@ public class TaiKhoan {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public TaiKhoan(int id, String ten,String pass) {
+		this.id=id;
+		this.tenDangNhap=ten;
+		this.matKhau=pass;
+	}
+	public TaiKhoan()
+	{}
+	
+}
 	
 
-}
+

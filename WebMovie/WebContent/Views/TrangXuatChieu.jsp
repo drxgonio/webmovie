@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Danh sách Tài Khoản</title>
+<title>Xuat Chieu</title>
 <meta name="description"
 	content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
 <meta name="viewport"
@@ -36,7 +36,7 @@
 
 <body class="h-100 accent-secondary active" data-color="danger">
 	<%
-		ZTaiKhoan tk = new ZTaiKhoan();
+		ZXuatChieu tk = new ZXuatChieu();
 	%>
 	<div class="container-fluid">
 		<div class="row" id="row_main">
@@ -203,16 +203,45 @@
 				<div class="page-header row no-gutters py-4">
 					<div class="col-12 col-sm-4 text-center text-sm-left mb-0">
 						<span class="text-uppercase page-subtitle">Dashboard</span>
-						<h3 class="page-title">Danh sách Tài Khoản</h3>
+						<h3 class="page-title">Xuất chiếu</h3>
 					</div>
 				</div>
 				<div class="col">
 					<div class="row">
 						<button type="button" class="btn btn-info mb-3"
-							data-toggle="modal" data-target="#myModal">Thêm Tài
-							Khoản+</button>
+							data-toggle="modal" data-target="#myModal">Thêm Xuất Chiếu+</button>
+
+					<div class="modal" id="myModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<!-- Modal Header -->
+									<div class="modal-header">
+										<h4 class="modal-title">Thêm Xuất Chiếu</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+									<!-- Modal body -->
+									<div class="modal-body">
+										<form class="add-new-post" action="/WebMovie/XuatChieuServlet"
+											method="post">
+											<input type="hidden" name="command" value="insert"> <input
+												class="form-control form-control-lg mb-3" type="text"
+												placeholder="idPhim" name="idPhim"> <input
+												class="form-control form-control-lg mb-3" type="text"
+												placeholder="gioChieu" name="gioChieu"> <input
+												class="form-control form-control-lg mb-3" type="text"
+												placeholder="idPhongChieu" name="idPhongChieu"> 
+											<div class="col">
+
+												<input type="submit" class="btn btn-info mb-3 " value="Thêm">
+											</div>
+										</form>
+									</div>
 
 
+								</div>
+							</div>
+
+						</div>
 
 
 					</div>
@@ -229,29 +258,29 @@
 
 										<tr>
 											<th scope="col" class="border-0">STT</th>
-											<th scope="col" class="border-0">Tên Tài Khoản</th>
-											<th scope="col" class="border-0">Mật khẩu</th>
-											<th scope="col" class="border-0">Quyền hạn</th>
+											<th scope="col" class="border-0">Tên Phim</th>
+											<th scope="col" class="border-0">Giờ Chiếu</th>
+											<th scope="col" class="border-0">Phòng chiếu</th>
 
 											<th scope="col" class="border-0">Tùy chọn</th>
 										</tr>
 										<%
 											int count = 0;
-											for (TaiKhoan c : tk.getTaiKhoan()) {
+											for (XuatChieu c : tk.getXuatChieu()) {
 												count++;
 										%>
 										<tr>
 											<th scope="col" class="border-0"><%=count%></th>
-											<th scope="col" class="border-0"><%=c.getTenDangNhap()%></th>
-											<th scope="col" class="border-0"><%=c.getMatKhau()%></th>
-											<th scope="col" class="border-0"><%=c.getRole()%></th>
+											<th scope="col" class="border-0"><%=c.getTieuDe()%></th>
+											<th scope="col" class="border-0"><%=c.getGioChieu()%></th>
+											<th scope="col" class="border-0"><%=c.getTenPhongChieu()%></th>
 
 											<td><a
-												href="/WebMovie/Views/UpdateTaiKhoan.jsp?command=update&id=<%=c.getId()%>&tenDangNhap=<%=c.getTenDangNhap()%>
-												&matKhau=<%=c.getMatKhau()%>&quyenHan=<%=c.getRole()%>"
+												href="/WebMovie/Views/UpdateXuatChieu.jsp?command=update&id=<%=c.getId_XuatChieu()%>
+												&gioChieu=<%=c.getGioChieu()%>&tieuDe=<%=c.getTieuDe()%>&tenPhongChieu=<%=c.getTenPhongChieu()%>"
 												class="btn btn-warning"><i class="fa fa-edit"></i></a>
 													 <a
-												href="/WebMovie/TaiKhoanServlet?command=delete&id=<%=c.getId()%>"
+												href="/WebMovie/XuatChieuServlet?command=delete&id=<%=c.getId_XuatChieu()%>"
 												class="btn btn-danger"> <i class="fa fa-trash"></i></a></td>
 										</tr>
 										<%

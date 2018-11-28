@@ -8,21 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.movie.Controller.ZTaiKhoan;
+
+import com.movie.Controller.ZDanhMucPhim;
+import com.movie.Controller.ZPhongChieu;
 import com.movie.beans.PhongChieu;
-import com.movie.beans.TaiKhoan;
 
-@WebServlet("/TaiKhoanServlet")
-public class TaiKhoanServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	ZTaiKhoan tk = new ZTaiKhoan();
+@WebServlet("/PhongChieuServlet")
+public class PhongChieuServlet extends HttpServlet {
+	ZPhongChieu phongchieu = new ZPhongChieu();
+       
+  
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
@@ -32,8 +30,8 @@ public class TaiKhoanServlet extends HttpServlet {
 		try {
 			switch(command) {
 			case "delete":
-				tk.deleteTaiKhoan((Integer.parseInt(id)));
-				url = "/Views/TrangTaiKhoan.jsp";
+				phongchieu.deletePhongChieu((Integer.parseInt(id)));
+				url = "/Views/TrangQuanLyPhongChieu.jsp";
 				break;
 			}
 
@@ -43,27 +41,28 @@ public class TaiKhoanServlet extends HttpServlet {
 		}
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
 		rd.forward(request, response);
-
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String tenDangNhap = request.getParameter("tenDangNhap");
-		String matKhau = request.getParameter("matKhau");
-		//String quyenHan = request.getParameter("quyenHan");
-		String id = request.getParameter("id");
+		String tenPhongChieu = request.getParameter("tenPhongChieu");
+		String soGheNgoi = request.getParameter("soGheNgoi");
+		String tenRap = request.getParameter("tenRap");
+		String id = request.getParameter("idRapChieu");
 		String command=request.getParameter("command");
 		String url = "";
 		try {
 			switch(command) {
 			case "update":
-				tk.UpdateTaiKhoan(new TaiKhoan((Integer.parseInt(id)),tenDangNhap, matKhau));
-					url = "/Views/TrangTaiKhoan.jsp";
+				phongchieu.UpdatePhongChieu(new PhongChieu((Integer.parseInt(id)),tenPhongChieu, (Integer.parseInt(soGheNgoi)),tenRap));
+					url = "/Views/TrangQuanLyPhongChieu.jsp";
 					break;
-			
+			case "insert":
+						phongchieu.InsertPhongChieu(new PhongChieu(tenPhongChieu, (Integer.parseInt(soGheNgoi)),tenRap));
+						url = "/Views/TrangQuanLyPhongChieu.jsp";
+						break;
 		
 			}
 

@@ -8,21 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.movie.Controller.ZTaiKhoan;
-import com.movie.beans.PhongChieu;
-import com.movie.beans.TaiKhoan;
 
-@WebServlet("/TaiKhoanServlet")
-public class TaiKhoanServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	ZTaiKhoan tk = new ZTaiKhoan();
+import com.movie.Controller.ZXuatChieu;
+import com.movie.beans.RapChieu;
+import com.movie.beans.XuatChieu;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+
+
+@WebServlet("/XuatChieuServlet")
+public class XuatChieuServlet extends HttpServlet {
+
+	ZXuatChieu xuatchieu=new ZXuatChieu();
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
@@ -32,8 +31,8 @@ public class TaiKhoanServlet extends HttpServlet {
 		try {
 			switch(command) {
 			case "delete":
-				tk.deleteTaiKhoan((Integer.parseInt(id)));
-				url = "/Views/TrangTaiKhoan.jsp";
+				xuatchieu.deleteXuatChieu((Integer.parseInt(id)));
+				url = "/Views/TrangXuatChieu.jsp";
 				break;
 			}
 
@@ -43,27 +42,29 @@ public class TaiKhoanServlet extends HttpServlet {
 		}
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
 		rd.forward(request, response);
-
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String tenDangNhap = request.getParameter("tenDangNhap");
-		String matKhau = request.getParameter("matKhau");
-		//String quyenHan = request.getParameter("quyenHan");
-		String id = request.getParameter("id");
 		String command=request.getParameter("command");
+		String idPhim=request.getParameter("idPhim");
+		String gioChieu=request.getParameter("gioChieu");
+		String idPhongChieu=request.getParameter("idPhongChieu");
+		String id=request.getParameter("id");
 		String url = "";
+
 		try {
 			switch(command) {
 			case "update":
-				tk.UpdateTaiKhoan(new TaiKhoan((Integer.parseInt(id)),tenDangNhap, matKhau));
-					url = "/Views/TrangTaiKhoan.jsp";
+				xuatchieu.UpdateXuatChieu(new XuatChieu((Integer.parseInt(id)),gioChieu));
+					url = "/Views/TrangXuatChieu.jsp";
 					break;
-			
+			case "insert":
+				xuatchieu.InsertXuatChieu(new XuatChieu((Integer.parseInt(idPhim)), gioChieu,(Integer.parseInt(idPhongChieu))));
+						url = "/Views/TrangXuatChieu.jsp";
+						break;
 		
 			}
 
@@ -74,7 +75,6 @@ public class TaiKhoanServlet extends HttpServlet {
 		}
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
 		rd.forward(request, response);
-
 	}
 
 }

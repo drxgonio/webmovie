@@ -64,6 +64,33 @@ public class ZTaiKhoan {
 			return false;
 			
 		}
+		public boolean UpdateTaiKhoan(TaiKhoan c)
+		{
+			try {
+				conn = ConnectionUtils.getMyConnection();
+				String sql="Exec dbo.UpdateTaiKhoan ?,?,?";
+				try
+				{
+					PreparedStatement ps=conn.prepareCall(sql);
+					ps.setInt(1,c.getId() );
+					ps.setString(2, c.getTenDangNhap());
+					ps.setString(3, c.getMatKhau());
+					
+				
+					return ps.executeUpdate()==1;
+				}
+				catch (SQLException ex){
+					Logger.getLogger(ZPhim.class.getName()).log(Level.SEVERE, null, ex);
+				};
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+		}
 		 public static void main(String[] args) throws ClassNotFoundException,
 	     SQLException {
 			/*ZTaiKhoan z=new ZTaiKhoan();
