@@ -275,6 +275,10 @@
 
 
 												</ul>
+												<a
+												href="/WebMovie/Views/test.jsp?id=<%=a%>
+												"
+												class="btn btn-warning"><i class="fa fa-edit"></i></a>
 											</div>
 											
 											
@@ -478,23 +482,9 @@
 						});
 	</script>
 	<script >
-            function validateSelectBox(obj)
+            function validateSelectBox()
             {
-                // Lấy danh sách các options
-                var options = obj.children;
- 
-                // Biến lưu trữ các chuyên mục đa chọn
-                var html = '';
- 
-                // lặp qua từng option và kiểm tra thuộc tính selected
-                for (var i = 0; i < options.length; i++){
-                    if (options[i].selected){
-                        html += '<li>'+options[i].value+'</li>';
-                    }
-                }
- 			
-                // Gán kết quả vào div#result
-                return html;
+            	location.reload();
             }
         </script>
 

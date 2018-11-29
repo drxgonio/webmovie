@@ -65,11 +65,11 @@ public class XuatChieu {
 	public XuatChieu() {
 		// TODO Auto-generated constructor stub
 	}
-	public XuatChieu(int idPhim,String gio,int id_pc) {
+	public XuatChieu(String phim,String gio,String phongchieu) {
 		// TODO Auto-generated constructor stub
-		this.id_Phim=idPhim;
+		this.tieuDe=phim;
 		this.gioChieu=gio;
-		this.id_PhongChieu=id_pc;
+		this.tenPhongChieu=phongchieu;
 	}public XuatChieu(int id,String gio) {
 		// TODO Auto-generated constructor stub
 		this.id_XuatChieu=id;

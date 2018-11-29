@@ -50,6 +50,8 @@ public class XuatChieuServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		String command=request.getParameter("command");
 		String idPhim=request.getParameter("idPhim");
+		String tieuDe=request.getParameter("tieuDe");
+		String tenPhongChieu=request.getParameter("tenPhongChieu");
 		String gioChieu=request.getParameter("gioChieu");
 		String idPhongChieu=request.getParameter("idPhongChieu");
 		String id=request.getParameter("id");
@@ -62,7 +64,7 @@ public class XuatChieuServlet extends HttpServlet {
 					url = "/Views/TrangXuatChieu.jsp";
 					break;
 			case "insert":
-				xuatchieu.InsertXuatChieu(new XuatChieu((Integer.parseInt(idPhim)), gioChieu,(Integer.parseInt(idPhongChieu))));
+				xuatchieu.InsertXuatChieu(new XuatChieu(tieuDe, gioChieu,tenPhongChieu));
 						url = "/Views/TrangXuatChieu.jsp";
 						break;
 		

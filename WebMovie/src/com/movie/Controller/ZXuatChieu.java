@@ -75,6 +75,30 @@ public class ZXuatChieu {
 		
 		return list;
 	}
+	public  ArrayList<XuatChieu> loadPhongChieu(String tenRap) throws SQLException, ClassNotFoundException
+	{
+		conn = ConnectionUtils.getMyConnection();
+	 
+	 	String sql = "select _name from Rapchieu,PhongChieu where PhongChieu.id_RapChieu=Rapchieu.id_RapChieu and Rapchieu.tenRap=N'"+tenRap+"'";
+		  	PreparedStatement pstm = conn.prepareStatement(sql);
+	        ResultSet rs = pstm.executeQuery();
+	        ArrayList<XuatChieu> list = new ArrayList<>();
+		
+			 while (rs.next()) {// Di chuyá»ƒn con trá»? xuá»‘ng báº£n ghi káº¿ tiáº¿p.
+				 XuatChieu tk=new XuatChieu();
+				
+				
+				
+				 tk.setTenPhongChieu(rs.getString("_name"));
+				
+				 list.add(tk);
+		
+			 }
+			 
+		
+		
+		return list;
+	}
 	public boolean deleteXuatChieu(int id)
 	{
 		try {
@@ -111,9 +135,9 @@ public class ZXuatChieu {
 			{
 				PreparedStatement ps=conn.prepareCall(sql);
 				
-				ps.setInt(1, c.getId_Phim());
+				ps.setString(1, c.getTieuDe());
 				ps.setString(2, c.getGioChieu());
-				ps.setInt(3, c.getId_PhongChieu());
+				ps.setString(3, c.getTenPhongChieu());
 				
 				return ps.executeUpdate()==1;
 				
@@ -165,6 +189,7 @@ public class ZXuatChieu {
 	public static void main(String[] args) throws ClassNotFoundException,
     SQLException {
 		ZXuatChieu z=new ZXuatChieu();
+		z.loadPhongChieu("Rap Chieu 2");
 		
 	 }
 
